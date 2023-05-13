@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <cstdio>
+int plus(int a, int b) {
+	int c = a + b;
+	return c;
+}
+int minus(int d, int e) {
+	int f = d - e;
+	return f;
+}
+int multiply(int g, int h) {
+	int i = g * h;
+	return i;
+}
+int divide(int j, int k) {
+	int l = j / k;
+	return l;
+}
+
+int main(void) {
+	int total;
+	printf("===========================\n");
+	printf("    사칙연산 계산기 V2\n");
+	printf("  +(10),-(20),X(30),/(40)\n");
+	printf("===========================\n");
+	scanf_s("%d", &total);
+	/*
+	if (total != 10,20,30,40) {
+		printf("조건을 읽어\n");
+	}
+	*/
+	if (total == 10) {
+		// 더하기 코드
+		int num1, num2;
+		printf("더하기를 선택하셨어요\n");
+		printf("더할 첫번째 수를 입력해주세염\n");
+		scanf_s("%d", &num1); fflush(stdin);
+		printf("더할 두번째 수를 입력해주세염\n");
+		scanf_s("%d", &num2); fflush(stdin);
+		int plustotal = plus(num1, num2);
+		printf("%d + %d = %d\n", num1, num2, plustotal);
+	}
+	if (total == 20) {
+		// 빼기 코드
+		int sum1, sum2;
+		printf("빼기를 선택하셨어요\n");
+		printf("뺄 첫번째 수를 입력해주세염\n");
+		scanf_s("%d", &sum1); fflush(stdin);
+		printf("뺄 두번째 수를 입력해주세염\n");
+		scanf_s("%d", &sum2); fflush(stdin);
+		int mintotal = minus(sum1, sum2);
+		printf("%d - %d  = %d\n", sum1, sum2, mintotal);
+	}
+	if (total == 30) {
+		// 곱하기 코드
+		int mulum1, mulum2;
+		printf("곱하기를 선택하셨어요\n");
+		printf("곱할 첫번째 수를 입력해주세염\n");
+		scanf_s("%d", &mulum1); fflush(stdin);
+		printf("곱할 첫번째 수를 입력해주세염\n");
+		scanf_s("%d", &mulum2); fflush(stdin);
+		if (mulum1 == 0) {
+			printf("0을 곱하면 0이 되지요");
+		}
+		if (mulum2 == 0) {
+			printf("0을 곱하면 0이 되지요");
+		}
+		int multitotal = multiply(mulum1, mulum2);
+		printf("%d X %d = %d\n", mulum1, mulum2, multitotal);
+	}
+	if (total == 40) {
+		// 나누기 코드
+		int divideum1, divideum2;
+		printf("나누기를 선택하셨어요\n");
+		printf("나눌 첫번째 수를 입력해주세염\n");
+		scanf_s("%d", &divideum1); fflush(stdin);
+		printf("나눌 두번째 수를 입력해주세염\n");
+		scanf_s("%d", &divideum2); fflush(stdin);
+		if (divideum1 == 0) {
+			printf("나누기에 0이 있을수 없습니다.\n");
+		}
+		if (divideum2 == 0) {
+			printf("나누기에 0이 있을수 없습니다.\n");
+		}
+		int dividetotal = divide(divideum1, divideum2);
+		int dividetotal2 = divide2(divideum1, divideum2);
+		printf("%d\n", dividetotal);
+	}
+	return 0;
+}

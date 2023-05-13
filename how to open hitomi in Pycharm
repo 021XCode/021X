@@ -1,4 +1,0 @@
-import webbrowser
-
-webbrowser.open_new('https://hitomi.la/')
-#it may be use GoodByeDPI or VPN

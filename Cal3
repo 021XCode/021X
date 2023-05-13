@@ -1,0 +1,28 @@
+#include <cstdio>
+
+int main(void) {
+    int firstint, secondint, total, total2{}; 
+    char sign;
+    printf("첫번째 값을 입력해주세요\n");
+    scanf_s("%d", &firstint); fflush(stdin);
+
+    printf("수식을 입력해주세요 (+, -, *, /)\n");
+    scanf_s(" %c", &sign); fflush(stdin);
+
+    printf("두번째 값을 입력해주세요\n");
+    scanf_s("%d", &secondint); fflush(stdin);
+
+    switch (sign) {
+    case '+':
+        total = firstint + secondint; break;
+    case '-':
+        total = firstint - secondint; break;
+    case '*':
+        total = firstint * secondint; break;
+    case '/':
+        total = firstint / secondint; total2 = firstint & secondint; break;
+    default:
+        puts("잘못된 연산자를 입력하셨습니다."); return 0;
+    }
+    printf("%d %c %d = %d...%d", firstint, sign, secondint, total, total2); return 0;
+}

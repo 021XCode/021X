@@ -1,0 +1,59 @@
+#include<cstdio>
+
+int main() {
+	int a, b, c, d, e, f, g, h, i;
+	printf("==========================\n");
+	printf("    사칙연산 계산기입니다.\n");
+	printf("+(10), -(20), X(30), /(40)\n");
+	printf("     부호를 선택해주세요\n");
+	printf("==========================\n");
+	
+	scanf_s("%d", &i);
+	if (i == 10) {
+		printf("더할 첫번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &a);
+		fflush(stdin);
+		printf("더할 두번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &b);
+		fflush(stdin);
+		printf("%d + %d = %d입니다!", a, b, a + b);
+	}
+	if (i == 20) {
+		printf("뺄 첫번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &c);
+		fflush(stdin);
+		printf("뺄 두번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &d);
+		fflush(stdin);
+		printf("%d - %d = %d입니다!", c, d, c - d);
+		/*if (c >= d) {
+			printf("%d - %d = %d입니다!", c, d, c - d);
+		}
+		if (d >= c) {
+			printf("%d - %d = %d입니다!", d, c, d - c);
+		}*/
+	}
+	if (i == 30) {
+		printf("곱할 첫번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &e);
+		fflush(stdin);
+		printf("곱할 두번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &f);
+		fflush(stdin);
+		printf("%d + %d = %d입니다!", e, f, e * f);
+	}
+	if (i == 40) {
+		printf("나눌 첫번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &g);
+		fflush(stdin);
+		printf("나눌 두번째 숫자를 적어주세요.\n");
+		scanf_s("%d", &h);
+		fflush(stdin);
+		if (g >= h) {
+			printf("%d / %d = %d입니다!", g, h, g / h);
+		}
+		if (h >= g) {
+			printf("%d / %d = %d입니다!", h, g, h / g);
+		}
+	}
+}

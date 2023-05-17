@@ -1,0 +1,55 @@
+#include<cstdio>
+
+    int main(void) {
+        re:
+        int firstint, secondint, total, total2{};
+        char sign,re;
+        //값을 입력받는 구간
+        printf("첫번째 값을 입력해주세요\n");
+        scanf_s("%d", &firstint); fflush(stdin);
+
+        printf("수식을 입력해주세요 (+, -, *, /)\n");
+        scanf_s(" %c", &sign); fflush(stdin);
+
+        printf("두번째 값을 입력해주세요\n");
+        scanf_s("%d", &secondint); fflush(stdin);
+        //입력받은 값을 판별하는 구간
+        switch (sign) {
+        case '+':
+            total = firstint + secondint; break;
+        case '-':
+            total = firstint - secondint; break;
+        case '*':
+            total = firstint * secondint; break;
+        case '/':
+            total = firstint / secondint; 
+            total2 = firstint & secondint; break;
+        default:
+            puts("잘못된 연산자를 입력하셨습니다."); return 0;
+        }
+        //값을 출력하는 구간
+        if (sign == '/') {
+            printf("%d %c %d = %d...%d\n\n", firstint, sign, secondint, total, total2);
+        }
+        else
+            printf("%d %c %d = %d\n\n", firstint, sign, secondint, total);
+    re2:
+        //다시할지 선택하는 구간
+        printf("다시하시겠습니까?(Y/N)\n");
+        scanf_s(" %c", &re); fflush(stdin);
+        switch(re){
+        case 'Y':
+            goto re;
+        case 'y':
+            goto re;
+        case 'N':
+            printf("사용해주셔서 감사합니다.");
+            return 0;
+        case 'n':
+            printf("사용해주셔서 감사합니다.");
+            return 0;
+        default:
+            printf("잘못된값을 입력하셨습니다 다시입력해주세요.\n");
+            goto re2;
+        }
+    }

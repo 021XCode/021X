@@ -1,0 +1,115 @@
+#include<cstdio>
+#include <windows.h>
+#define C_RED  "\033[31m"
+#define C_NRML "\033[0m"
+#define C_BLUE "\033[34m"
+#include <time.h> 
+#pragma warning(disable : 4996)
+
+struct time {
+    unsigned int ti_hour;
+    unsigned int ti_min;
+    unsigned int ti_sec;
+};
+
+void gettime(struct time*);
+
+void gettime(struct time* p) // 원본 데이터를 변환할수 있도록 Call by pointer 기법 사용 
+{
+
+    char temp[30];
+    char* cp;
+    _strtime(temp); 
+
+    cp = strtok(temp, ":"); 
+    p->ti_hour = atoi(cp); 
+    cp = strtok(NULL, ":");
+    p->ti_min = atoi(cp);
+    cp = strtok(NULL, ":");
+    p->ti_sec = atoi(cp); 
+}
+
+
+struct date {
+    unsigned int da_year;
+    unsigned int da_mon;
+    unsigned int da_day;
+};
+
+void getdate(struct date* p) 
+{
+    char temp[128];
+    char* cp, syear[5] = "20";
+    _strdate(temp); 
+    
+    cp = strtok(temp, "/"); 
+    p->da_mon = atoi(cp); 
+    cp = strtok(NULL, "/");
+    p->da_day = atoi(cp); 
+    cp = strtok(NULL, "/"); 
+
+    strcat(syear, cp);  
+    p->da_year = atoi(syear); 
+}
+
+int main(void) {
+    struct date stdate;
+    getdate(&stdate);
+    printf("시스템시간:%u 년 %u 월 %u일 ", stdate.da_year, stdate.da_mon, stdate.da_day);
+
+    struct time sttime;
+    gettime(&sttime);
+    printf("%u 시 %u 분 %u초 \n", sttime.ti_hour, sttime.ti_min, sttime.ti_sec);
+re:
+    int firstint, secondint, total, total2{};
+    char sign, re;
+    //값을 입력받는 구간
+    printf("첫번째 값을 입력해주세요\n");
+    scanf_s("%d", &firstint); fflush(stdin);
+
+    printf("수식을 입력해주세요 (+, -, *, /)\n");
+    scanf_s(" %c", &sign); fflush(stdin);
+
+    printf("두번째 값을 입력해주세요\n");
+    scanf_s("%d", &secondint); fflush(stdin);
+    //입력받은 값을 판별하는 구간
+    switch (sign) {
+    case '+':
+        total = firstint + secondint; break;
+    case '-':
+        total = firstint - secondint; break;
+    case '*':
+        total = firstint * secondint; break;
+    case '/':
+        total = firstint / secondint;
+        total2 = firstint & secondint; break;
+    default:
+        puts("잘못된 연산자를 입력하셨습니다."); return 0;
+    }
+    //값을 출력하는 구간
+    if (sign == '/') {
+        printf("%d %c %d = %d...%d\n\n", firstint, sign, secondint, total, total2);
+    }
+    else
+        printf("%d %c %d = %d\n\n", firstint, sign, secondint, total);
+re2:
+    //다시할지 선택하는 구간
+    printf("%s다시하시겠습니까?(%sY%s/%sN%s)\n", C_NRML, C_BLUE, C_NRML, C_RED, C_NRML);
+    scanf_s(" %c", &re); fflush(stdin);
+    switch (re) {
+    case 'Y':
+        goto re;
+    case 'y':
+        goto re;
+    case 'N':
+        printf("사용해주셔서 감사합니다.");
+        return 0;
+    case 'n':
+        printf("사용해주셔서 감사합니다.");
+        return 0;
+    default:
+        printf("%s잘못된값을 입력하셨습니다 다시 입력해주세요.\n", C_RED);
+        Sleep(1000);
+        goto re2;
+    }
+}

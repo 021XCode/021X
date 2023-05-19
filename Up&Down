@@ -1,0 +1,46 @@
+#include<cstdio>
+#include<stdlib.h>
+#include<time.h>
+#include<cstdlib>
+#include<ctime>
+#include<random>
+#include <windows.h>
+int main() {
+    int randomint, int1;
+	printf("1~10000가지의 숫자중 한가지의 숫자가 랜덤으로 선택됩니다!\n"); Sleep(3000);
+	printf("Up & Down 힌트가 나오니 한번 맞춰보세요."); Sleep(3000);
+
+    srand(time(NULL));
+    randomint = rand() % 10000 + 1;
+
+        Sleep(100); printf("-"); system("cls");
+        Sleep(100); printf("|"); system("cls");
+        Sleep(100); printf("-"); system("cls");
+        Sleep(100); printf("-"); system("cls");
+        Sleep(100); printf("|"); system("cls");
+        Sleep(100); printf("-"); system("cls");
+        Sleep(100); printf("-"); system("cls");
+        Sleep(100); printf("|"); system("cls");
+        Sleep(100); printf("-"); system("cls");
+ 
+    printf("생성 완료!\n");
+re:
+    printf("당신이 생각하는숫자를 적어보세요!\n");
+    scanf_s("%d", &int1); fflush(stdin);
+    if (int1 != randomint) {
+        if (int1 > randomint) {
+            printf("Down!\n"); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+        if (int1 < randomint) {
+            printf("Up!\n"); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+    }
+    if (int1 == randomint) {
+        printf("정답입니다 축하합니다!\n");
+        return 0;
+    }
+}

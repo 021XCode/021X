@@ -1,0 +1,70 @@
+#include<cstdio>
+#include<stdlib.h>
+#include<time.h>
+#include<cstdlib>
+#include<ctime>
+#include<random>
+#include<windows.h>
+#include<stdio.h>
+
+
+#define C_RED  "\033[31m"
+#define C_NRML "\033[0m"
+#define C_BLUE "\033[34m"
+
+int main(void) {
+re2:
+    int randomint, int1, rere;
+    printf("1~10000가지의 숫자중 한가지의 숫자가 랜덤으로 선택됩니다!\n"); Sleep(3000);
+    printf("%sUp%s & %sDown%s힌트가 나오니 한번 맞춰보세요.", C_BLUE, C_NRML, C_RED, C_NRML); Sleep(3000);
+
+    srand(time(NULL));
+    randomint = rand() % 10000 + 1;
+
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+
+    printf("생성 완료!\n");
+re:
+    printf("당신이 생각하는숫자를 적어보세요!\n");
+    scanf_s("%d", &int1); fflush(stdin);
+    if (int1 != randomint) {
+        if (int1 > randomint) {
+            printf("%sDown!%s\n",C_BLUE,C_NRML); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+        if (int1 < randomint) {
+            printf("%sUp!%s\n",C_RED,C_NRML); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+    }
+    if (int1 == randomint) {
+        printf("정답입니다 축하합니다!");
+        Sleep(500); printf("."); Sleep(500); printf("."); Sleep(500); printf(".");
+        printf("한번더 하시겠습니까?(Y/N)\n");
+        scanf_s(" %c", &rere); fflush(stdin);
+        switch (rere) {
+            case('Y'):
+                goto re2;
+                break;
+            case('y'):
+                goto re2;
+                break;
+            case('N'):
+                printf("사용해주셔서 감사합니다.\n");
+                break;
+            case('n'):
+                printf("사용해주셔서 감사합니다.\n");
+                break;
+        }
+    }
+}

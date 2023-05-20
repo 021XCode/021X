@@ -1,0 +1,126 @@
+#include<cstdio>
+#include<stdlib.h>
+#include<time.h>
+#include<cstdlib>
+#include<ctime>
+#include<random>
+#include<windows.h>
+#include<stdio.h>
+#pragma warning(disable : 4996)
+
+
+#define C_RED  "\033[31m"
+#define C_NRML "\033[0m"
+#define C_BLUE "\033[34m"
+
+struct time {
+    unsigned int ti_hour;
+    unsigned int ti_min;
+    unsigned int ti_sec;
+};
+
+void gettime(struct time*);
+
+void gettime(struct time* p) // 원본 데이터를 변환할수 있도록 Call by pointer 기법 사용 
+{
+
+    char temp[30];
+    char* cp;
+    _strtime(temp);
+
+    cp = strtok(temp, ":");
+    p->ti_hour = atoi(cp);
+    cp = strtok(NULL, ":");
+    p->ti_min = atoi(cp);
+    cp = strtok(NULL, ":");
+    p->ti_sec = atoi(cp);
+}
+
+
+struct date {
+    unsigned int da_year;
+    unsigned int da_mon;
+    unsigned int da_day;
+};
+
+void getdate(struct date* p)
+{
+    char temp[128];
+    char* cp, syear[5] = "20";
+    _strdate(temp);
+
+    cp = strtok(temp, "/");
+    p->da_mon = atoi(cp);
+    cp = strtok(NULL, "/");
+    p->da_day = atoi(cp);
+    cp = strtok(NULL, "/");
+
+    strcat(syear, cp);
+    p->da_year = atoi(syear);
+}
+
+int main(void) {
+    struct date stdate;
+    getdate(&stdate);
+    printf("시스템시간:%u 년 %u 월 %u일 ", stdate.da_year, stdate.da_mon, stdate.da_day);
+
+    struct time sttime;
+    gettime(&sttime);
+    printf("%u 시 %u 분 %u초 \n", sttime.ti_hour, sttime.ti_min, sttime.ti_sec);
+re2:
+    int randomint, int1, rere;
+    printf("1~10000가지의 숫자중 한가지의 숫자가 랜덤으로 선택됩니다!\n"); Sleep(3000);
+    printf("%sUp%s & %sDown%s힌트가 나오니 한번 맞춰보세요.", C_BLUE, C_NRML, C_RED, C_NRML); Sleep(3000);
+
+    srand(time(NULL));
+    randomint = rand() % 10000 + 1;
+
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+    Sleep(100); printf("|"); system("cls");
+    Sleep(100); printf("-"); system("cls");
+
+    printf("생성 완료!\n");
+re:
+    printf("당신이 생각하는숫자를 적어보세요!\n");
+    scanf_s("%d", &int1); fflush(stdin);
+    if (int1 != randomint) {
+        if (int1 > randomint) {
+            printf("%sDown!%s\n", C_BLUE, C_NRML); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+        if (int1 < randomint) {
+            printf("%sUp!%s\n", C_RED, C_NRML); Sleep(100);
+            printf("다시한번더 입력해주세요!\n");
+            goto re;
+        }
+    }
+    if (int1 == randomint) {
+        printf("정답입니다 축하합니다!");
+        Sleep(500); printf("."); Sleep(500); printf("."); Sleep(500); printf(".");
+        printf("한번더 하시겠습니까?(Y/N)\n");
+        scanf_s(" %c", &rere); fflush(stdin);
+        switch (rere) {
+        case('Y'):
+            system("cls");
+            goto re2;
+            break;
+        case('y'):
+            system("cls");
+            goto re2;
+            break;
+        case('N'):
+            printf("사용해주셔서 감사합니다.\n");
+            break;
+        case('n'):
+            printf("사용해주셔서 감사합니다.\n");
+            break;
+        }
+    }
+}

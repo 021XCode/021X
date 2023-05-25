@@ -1,0 +1,39 @@
+#include<cstdio>
+#include<math.h>
+#include<Windows.h>
+
+int main() {
+	int a, b, c, all, all2;
+	int b2;
+
+	printf("근 판별 계산기입니다.\n");
+re:
+	printf("a의 값을 입력해주세요.");
+	scanf_s("%d", &a); fflush(stdin);
+
+	printf("b의 값을 입력해주세요.");
+	scanf_s("%d", &b); fflush(stdin);
+
+	printf("c의 값을 입력해주세요.");
+	scanf_s("%d", &c); fflush(stdin);
+
+	b2 = pow(b, 2);
+	all = -4 * a * c;
+	all2 = b2 + all;
+
+	if (all2 > 0) {
+		printf("실근입니다! 처음으로 돌아가겠습니다.\n");
+		printf("1 "); Sleep(1000); printf("2 "); Sleep(1000); printf("3\n"); Sleep(1000);
+		goto re;
+	}
+	if (all2 < 0) {
+		printf("허근입니다! 처음으로 돌아가겠습니다.\n");
+		printf("1 "); Sleep(1000); printf("2 "); Sleep(1000); printf("3\n"); Sleep(1000);
+		goto re;
+	}
+	if (all2 > 0) {
+		printf("중근입니다! 처음으로 돌아가겠습니다.\n");
+		printf("1 "); Sleep(1000); printf("2 "); Sleep(1000); printf("3\n"); Sleep(1000);
+		goto re;
+	}
+}
